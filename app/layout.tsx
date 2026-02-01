@@ -8,7 +8,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Dhaner Ninja - Dhanersish version of fruit ninja!',
   description: 'Dhoner sish e vot din, Fruit Ninja (Dhoner sish edition)',
-  // This must match your actual deployment URL
   metadataBase: new URL('https://dhanersish.vercel.app'),
   
   openGraph: {
@@ -18,11 +17,10 @@ export const metadata: Metadata = {
     siteName: 'Dhaner Ninja',
     images: [
       {
-        // Using the absolute URL to ensure it loads regardless of domain matching
-        url: 'https://www.dhanershish.org/social-preview.jpg',
+        url: '/og.png', // Pointing directly to your public/og.png
         width: 1200,
         height: 630,
-        alt: 'Dhaner Ninja Preview',
+        alt: 'Dhaner Ninja Game Preview',
       },
     ],
     locale: 'en_US',
@@ -32,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Dhaner Ninja - Dhanersish version of fruit ninja!',
     description: 'Dhoner sish e vot din, Fruit Ninja (Dhoner sish edition)',
-    images: ['https://www.dhanershish.org/social-preview.jpg'],
+    images: ['/og.png'],
   },
 };
 
@@ -44,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* This makes the Discord embed border Green! */}
+        {/* Makes the Discord embed line Paddy Green */}
         <meta name="theme-color" content="#15803d" />
       </head>
       <body className={inter.className}>
