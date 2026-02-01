@@ -261,7 +261,7 @@ export default function PaddyProtector() {
 
   return (
     <>
-      <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+      <GoogleAnalytics gaId="G-GLC9ZDC7QV" />
       
       <div className="relative w-full h-screen overflow-hidden bg-emerald-50">
         <canvas
