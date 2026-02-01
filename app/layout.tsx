@@ -5,24 +5,24 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Paddy Protector - Slice the Harvest!',
-  description: 'A high-energy mobile game where you slice paddy and ballots while avoiding bombs. Achieve political ranks and share your development record!',
+  title: 'Dhaner Ninja - Dhanersish version of fruit ninja!',
+  description: 'Dhoner sish e vot din, Fruit Ninja (Dhoner sish edition)',
   openGraph: {
-    title: 'Paddy Protector - Slice the Harvest!',
-    description: 'Slice the paddy, avoid the bombs, and become The People\'s Leader!',
+    title: 'Dhaner Ninja - Dhanersish version of fruit ninja!',
+    description: 'Dhoner sish e vot din, Fruit Ninja (Dhoner sish edition)',
     images: [
       {
-        url: 'https://bolt.new/static/og_default.png',
+        url: 'https://www.dhanershish.org/social-preview.jpg',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Paddy Protector - Slice the Harvest!',
-    description: 'Slice the paddy, avoid the bombs, and become The People\'s Leader!',
+    title: 'Dhaner Ninja - Dhanersish version of fruit ninja!',
+    description: 'Dhoner sish e vot din, Fruit Ninja (Dhoner sish edition)',
     images: [
       {
-        url: 'https://bolt.new/static/og_default.png',
+        url: 'https://www.dhanershish.org/social-preview.jpg',
       },
     ],
   },
