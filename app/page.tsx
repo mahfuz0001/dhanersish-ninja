@@ -260,77 +260,81 @@ export default function PaddyProtector() {
   const getRank = (s: number) => POLITICAL_RANKS.find(r => s >= r.min && s <= r.max)?.title || 'Citizen';
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-emerald-50">
-      <canvas
-        ref={canvasRef}
-        onPointerMove={(e) => {
-            const rect = canvasRef.current?.getBoundingClientRect();
-            if (rect) {
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                gameDataRef.current.trail.push({ x, y, timestamp: Date.now() });
-                checkSlice(x, y);
-            }
-        }}
-        className="absolute inset-0 touch-none cursor-crosshair"
-      />
-
-      {isDark && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-white text-center">
-                  <LightbulbOff className="w-20 h-20 mx-auto animate-pulse" />
-                  <h2 className="text-2xl font-bold">LOAD SHEDDING!</h2>
-              </div>
-          </div>
-      )}
-
-      {/* START SCREEN */}
-      {gameState === 'start' && (
-        <div className="absolute inset-0 flex items-center justify-center bg-green-700/90 text-white p-6 text-center">
-          <div className="space-y-6">
-            <h1 className="text-5xl font-black italic">DHANER SHISH<br/>HARVEST</h1>
-            <p className="text-lg">Slice for Development, Avoid the Obstacles!</p>
-            <Button onClick={startGame} className="bg-yellow-400 text-green-900 text-2xl px-10 py-8 font-black rounded-full hover:scale-110 transition-transform">
-              START HARVESTING 🌾
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {/* PLAYING HUD */}
-      {gameState === 'playing' && (
-        <div className="absolute top-6 left-6 pointer-events-none">
-          <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border-2 border-green-500">
-            <p className="text-xs font-bold text-green-700">PADDY COLLECTED</p>
-            <p className="text-4xl font-black text-green-900">{score}</p>
-          </div>
-        </div>
-      )}
-
-      {/* GAME OVER SCREEN */}
-      {gameState === 'gameover' && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white p-6 text-center z-50">
-          <div className="bg-white text-gray-900 p-8 rounded-3xl max-w-sm w-full space-y-4">
-            <h2 className="text-3xl font-black text-red-600">OH NO!</h2>
-            <p className="text-gray-600 italic">"{failText}"</p>
-            <div className="bg-green-100 p-4 rounded-xl">
-                <p className="text-sm font-bold text-green-800">YOUR RANK</p>
-                <p className="text-2xl font-black text-green-600 uppercase">{getRank(score)}</p>
+    <>
+      <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+      
+      <div className="relative w-full h-screen overflow-hidden bg-emerald-50">
+        <canvas
+          ref={canvasRef}
+          onPointerMove={(e) => {
+              const rect = canvasRef.current?.getBoundingClientRect();
+              if (rect) {
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  gameDataRef.current.trail.push({ x, y, timestamp: Date.now() });
+                  checkSlice(x, y);
+              }
+          }}
+          className="absolute inset-0 touch-none cursor-crosshair"
+        />
+  
+        {isDark && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="text-white text-center">
+                    <LightbulbOff className="w-20 h-20 mx-auto animate-pulse" />
+                    <h2 className="text-2xl font-bold">LOAD SHEDDING!</h2>
+                </div>
             </div>
-            <p className="text-5xl font-black">{score}</p>
-            <Button onClick={startGame} className="w-full bg-green-600 text-white py-6 text-xl rounded-xl">TRY AGAIN 🔄</Button>
-            <Button onClick={() => window.open(`https://wa.me/?text=I scored ${score} in the Paddy Harvest Game! Rank: ${getRank(score)}. Can you beat me?`)} variant="outline" className="w-full border-green-600 text-green-600">
-                <Share2 className="mr-2" /> Share Result
-            </Button>
+        )}
+  
+        {/* START SCREEN */}
+        {gameState === 'start' && (
+          <div className="absolute inset-0 flex items-center justify-center bg-green-700/90 text-white p-6 text-center">
+            <div className="space-y-6">
+              <h1 className="text-5xl font-black italic">DHANER SHISH<br/>HARVEST</h1>
+              <p className="text-lg">Slice for Development, Avoid the Obstacles!</p>
+              <Button onClick={startGame} className="bg-yellow-400 text-green-900 text-2xl px-10 py-8 font-black rounded-full hover:scale-110 transition-transform">
+                START HARVESTING 🌾
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
-
-      {showMessage && (
-        <div className="absolute bottom-20 w-full text-center animate-bounce pointer-events-none">
-          <span className="bg-yellow-400 text-green-900 px-6 py-2 rounded-full font-black text-xl shadow-xl">{funnyMessage}</span>
-        </div>
-      )}
-    </div>
+        )}
+  
+        {/* PLAYING HUD */}
+        {gameState === 'playing' && (
+          <div className="absolute top-6 left-6 pointer-events-none">
+            <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg border-2 border-green-500">
+              <p className="text-xs font-bold text-green-700">PADDY COLLECTED</p>
+              <p className="text-4xl font-black text-green-900">{score}</p>
+            </div>
+          </div>
+        )}
+  
+        {/* GAME OVER SCREEN */}
+        {gameState === 'gameover' && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white p-6 text-center z-50">
+            <div className="bg-white text-gray-900 p-8 rounded-3xl max-w-sm w-full space-y-4">
+              <h2 className="text-3xl font-black text-red-600">OH NO!</h2>
+              <p className="text-gray-600 italic">"{failText}"</p>
+              <div className="bg-green-100 p-4 rounded-xl">
+                  <p className="text-sm font-bold text-green-800">YOUR RANK</p>
+                  <p className="text-2xl font-black text-green-600 uppercase">{getRank(score)}</p>
+              </div>
+              <p className="text-5xl font-black">{score}</p>
+              <Button onClick={startGame} className="w-full bg-green-600 text-white py-6 text-xl rounded-xl">TRY AGAIN 🔄</Button>
+              <Button onClick={() => window.open(`https://wa.me/?text=I scored ${score} in the Paddy Harvest Game! Rank: ${getRank(score)}. Can you beat me?`)} variant="outline" className="w-full border-green-600 text-green-600">
+                  <Share2 className="mr-2" /> Share Result
+              </Button>
+            </div>
+          </div>
+        )}
+  
+        {showMessage && (
+          <div className="absolute bottom-20 w-full text-center animate-bounce pointer-events-none">
+            <span className="bg-yellow-400 text-green-900 px-6 py-2 rounded-full font-black text-xl shadow-xl">{funnyMessage}</span>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
