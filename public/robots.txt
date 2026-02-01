@@ -1,0 +1,10 @@
+# Allow all crawlers to see the site and images
+User-agent: *
+Allow: /
+
+# Specifically allow Discord and Social Media bots
+User-agent: Discordbot
+Allow: /
+
+# Direct link to your sitemap (if you have one later)
+Sitemap: https://dhanersish.vercel.app/sitemap.xml
